@@ -3,7 +3,7 @@ $(document).ready(
     {
         var template = $('#template').html();
         Mustache.parse(template);
-  
+        
         var API_DOMAIN = 'https://api.educ.ar/0.9/';
         var API_METHODS = {
             'recursos': {

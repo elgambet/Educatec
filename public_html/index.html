@@ -27,16 +27,19 @@
                     <div class="collapse navbar-collapse">                        
                         <ul id="menu-busquedas" class="nav navbar-nav">
                           <li><a id="principal">Principal</a></li>
-                          <li><a id="buscar-robotica">Robótica</a></li>
-                          <li><a id="buscar-software" href="#contact">Software</a></li>
-                          <li><a id="buscar-hardware" href="#contact">Hardware</a></li>
+                          <li><a id="buscar-economia">Economia</a></li>
+                          <li><a id="buscar-macroeconomia">Macroeconomia</a></li>
+
+                          <li><a id="buscar-finanzas">Finanza</a></li>
+                          <li><a id="buscar-contabilidad">Contabilidad</a></li>
+                          <li><a href="buscar-Matematica financiera"></a>
                         </ul>
                         <div class="navbar-form navbar-right">
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <input id="texto-busqueda" type="text" placeholder="Texto" class="form-control">
                             </div>
                             <button id="buscar" type="submit" class="btn btn-success">Buscar</button>
-                        </div>
+                        --></div>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
@@ -45,12 +48,9 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div id="descripcion-sitio" class="container">
-                <h1>Educatec</h1>
-                <p>En este proyecto vamos a mostrar que simple es crear un frontend web temático con la api de recursos educativos de educ.ar <a href="http://datosabiertos.educ.ar" target="blank">http://datosabiertos.educ.ar</a>
+                <h1><img src="img/logo.program.ar.png" style="height: 100px;"></img>Empres.ar</h1>
+                <p>Esta página tiene como objetivo brindar información específica sobre Administración de Empresas. Para ello el sitio toma información proveniente de la página de Educ.ar<a href="http://datosabiertos.educ.ar" target="blank">http://datosabiertos.educ.ar</a>
 
-                    <br>Vamos a necesitar diseñadores y programadores web.
-
-                    <br>Es ideal para aquellos que nunca hayan trabajado con web services rest y quieran aprender a hacerlo como para aquellos que quieran dar sus primeros pasos en la programación web en general.</p>
             </div>
             <div id="contenedor-resultados" style="display: none;">
                 <h2>Resultados de búsqueda</h2>
@@ -62,19 +62,47 @@
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-4">
-                    <h2>Robótica</h2>                    
-                    <div id="robotica-resultados">
-                    </div>
+                <div class="col-md-3">
+                    <h3>Economía</h3>                    
+                    <ul>
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Oferta_y_demanda">Oferta y Demanda</a>
+                        </li>
+
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Estructura_de_mercado">Estructura de Mercado</a>
+                        </li>
+
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Bien_econ%C3%B3mico">Bienes y Servicios</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <h2>Software</h2>                    
-                    <p id="software-resultados"></p>
+                <div class="col-md-3">
+                    <h3>Macroeconomía</h3>                    
+                   <ul>
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Inflaci%C3%B3n">Inflación</a>
+                        </li>
+
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Producto_interno_bruto">PBI</a>
+                        </li>
+
+                        <li>
+                            <a target="blank" href="http://es.wikipedia.org/wiki/Sector_p%C3%BAblico">Sector Público</a>
+                        </li>
+                    </ul> 
                 </div>
-                <div class="col-md-4">
-                    <h2>Hardware</h2>
-                    <p id="hardware-resultados"></p>
+                <div class="col-md-3">
+                    <h3>Finanzas</h3>
+                    <p>Próximamente</p>
                 </div>
+                <div class="col-md-3">
+                    <h3>Contabilidad</h3>
+                    <p>Próximamente</p>
+                </div>
+                
             </div>
 
             <script id="template" type="x-tmpl-mustache">
@@ -84,7 +112,9 @@
                     {{/titulo_segmento}}
                     <h3>{{titulo_html}}</h3>
                     {{#data}}
+
                     <a target="blank" href="http://www.educ.ar/recursos/ver?rec_id={{id}}" class="list-group-item">
+                      <img align="left" src="{{icono_chico}}"></img>
                       <h4 class="list-group-item-heading">{{titulo}}</h4>
                       <p class="list-group-item-text">{{{descripcion}}}</p>
                     </a>
