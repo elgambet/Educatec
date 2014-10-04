@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Hackaton Chaco 2014</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="css/jumbotron.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse">                        
+                        <ul id="menu-busquedas" class="nav navbar-nav">
+                          <li><a id="principal">Principal</a></li>
+                          <li><a id="buscar-robotica">Robótica</a></li>
+                          <li><a id="buscar-software" href="#contact">Software</a></li>
+                          <li><a id="buscar-hardware" href="#contact">Hardware</a></li>
+                        </ul>
+                        <div class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input id="texto-busqueda" type="text" placeholder="Texto" class="form-control">
+                            </div>
+                            <button id="buscar" type="submit" class="btn btn-success">Buscar</button>
+                        </div>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div id="descripcion-sitio" class="container">
+                <h1>Educatec</h1>
+                <p>En este proyecto vamos a mostrar que simple es crear un frontend web temático con la api de recursos educativos de educ.ar <a href="http://datosabiertos.educ.ar" target="blank">http://datosabiertos.educ.ar</a>
+
+                    <br>Vamos a necesitar diseñadores y programadores web.
+
+                    <br>Es ideal para aquellos que nunca hayan trabajado con web services rest y quieran aprender a hacerlo como para aquellos que quieran dar sus primeros pasos en la programación web en general.</p>
+            </div>
+            <div id="contenedor-resultados" style="display: none;">
+                <h2>Resultados de búsqueda</h2>
+                <div id="busqueda-resultados">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Robótica</h2>                    
+                    <div id="robotica-resultados">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Software</h2>                    
+                    <p id="software-resultados"></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Hardware</h2>
+                    <p id="hardware-resultados"></p>
+                </div>
+            </div>
+
+            <script id="template" type="x-tmpl-mustache">
+                <div class="list-group">
+                    {{#titulo_segmento}}
+                    <h2>{{titulo_segmento}}</h2>
+                    {{/titulo_segmento}}
+                    <h3>{{titulo_html}}</h3>
+                    {{#data}}
+                    <a target="blank" href="http://www.educ.ar/recursos/ver?rec_id={{id}}" class="list-group-item">
+                      <h4 class="list-group-item-heading">{{titulo}}</h4>
+                      <p class="list-group-item-text">{{{descripcion}}}</p>
+                    </a>
+                    {{/data}}
+                </div>
+            </script>
+            
+            <!--
+            <ul>
+                    {{#data}}
+                        <li><a target="blank" href="http://www.educ.ar/recursos/ver?rec_id={{id}}">{{{titulo}}}</a></li>
+                    {{/data}}
+                    </ul>
+            -->
+                
+            <hr>
+
+            <footer>
+                <p>Hackaton Chaco 2014</p>
+            </footer>
+        </div>
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/libs/jquery/jquery.js"></script>
+    <script type="text/javascript" src="js/libs/mustache/mustache.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="js/libs/bootstrap/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    
+</html>
