@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Hackaton Chaco 2014</title>
+        <title>Educatec</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,21 +25,18 @@
                     </button>
                     
                     <div class="collapse navbar-collapse">                        
-                        <ul id="menu-busquedas" class="nav navbar-nav">
-                          <li><a id="principal">Principal</a></li>
-                          <li><a id="buscar-economia">Economia</a></li>
-                          <li><a id="buscar-macroeconomia">Macroeconomia</a></li>
-
-                          <li><a id="buscar-finanzas">Finanza</a></li>
-                          <li><a id="buscar-contabilidad">Contabilidad</a></li>
-                          <li><a href="buscar-Matematica financiera"></a>
+                        <ul class="nav navbar-nav">
+                          <li><a data-hide="contenedor-resultados" data-show="descripcion-sitio">Principal</a></li>
+                          <li><a data-buscar="robotica" data-source="Videos" data-html="busqueda-resultados" data-hide="descripcion-sitio" data-show="contenedor-resultados">Robótica</a></li>
+                          <li><a data-buscar="software" data-source="Ebooks,Videos,Secuencias" data-html="busqueda-resultados" data-hide="descripcion-sitio" data-show="contenedor-resultados">Software</a></li>
+                          <li><a data-buscar="programacion" data-source="Videos,Secuencias" data-html="busqueda-resultados" data-hide="descripcion-sitio" data-show="contenedor-resultados">Programación</a></li>                          
                         </ul>
                         <div class="navbar-form navbar-right">
-                            <!--<div class="form-group">
+                            <div class="form-group">
                                 <input id="texto-busqueda" type="text" placeholder="Texto" class="form-control">
                             </div>
-                            <button id="buscar" type="submit" class="btn btn-success">Buscar</button>
-                        --></div>
+                            <button data-buscar-id="texto-busqueda" data-html="busqueda-resultados"  data-hide="descripcion-sitio" data-show="contenedor-resultados" type="submit" class="btn btn-success">Buscar</button>
+                        </div>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
@@ -48,8 +45,52 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div id="descripcion-sitio" class="container">
-                <h1><img src="img/logo.program.ar.png" style="height: 100px;"></img>Empres.ar</h1>
-                <p>Esta página tiene como objetivo brindar información específica sobre Administración de Empresas. Para ello el sitio toma información proveniente de la página de Educ.ar<a href="http://datosabiertos.educ.ar" target="blank">http://datosabiertos.educ.ar</a>
+                <h1>Educatec</h1>
+                <p>En este proyecto vamos a mostrar que simple es crear un frontend web temático con la api de recursos educativos de educ.ar <a href="http://datosabiertos.educ.ar" target="blank">http://datosabiertos.educ.ar</a>
+
+                    <br><br>Es ideal para aquellos que nunca hayan trabajado con web services rest y quieran aprender a hacerlo como para aquellos que quieran dar sus primeros pasos en la programación web en general.
+
+                    <br><br>Utilizamos Mustache, Jquery y Bootstrap
+
+                    <h2>Documentación</h2>
+                    
+                    <h3>Crear un elemento que busque recursos por un texto determinado</h3>
+                    
+                    <h4>Atributos</h4> 
+                    <ul>
+                        <li><span style="color: red">data-buscar</span> Establece la palabra a buscar, en caso de comenzar con "#" se interpretará que es un ID de un campo de texto</li>
+                        <li><span style="color: red">data-buscar-id</span> Es un ID de un campo de texto del cual se tomará el valor del mismo para realizar la búsqueda</li>
+                        <li><span style="color: red">data-append</span> Establece donde mostrar los resultados, serán agregados al final del elemento</li>
+                        <li><span style="color: red">data-html</span> Establece donde mostrar los resultados, reemplazarán el html anterior</li>
+                        <li><span style="color: red">data-hide</span> Establece que elemento ocultar al realizar la búsqueda</li>
+                        <li><span style="color: red">data-show</span> Establece que elemento mostrar al realizar la búsqueda</li>
+                        <li><span style="color: red">data-source</span> Establece que métodos de API utilizar (Juegos, Videos, Ebooks, Secuencias, Infografias), en caso de ser más de uno (separar por comas) y para buscar en todos simplemente no ponerlo</li>
+                    </ul>
+
+                    <h4>Ejemplos</h4> 
+                    
+                    <h5 style="color: red">
+                        BUSCAR MEDIANTE CLICK    
+                    </h5>
+                        
+
+                    Este elemento buscará recursos relacionados con robótica y los sumará a los que se encuentren dentro del elemento de ID "busqueda-resultados"
+
+                    &lt;a data-buscar="robotica" data-source="Videos" data-html="busqueda-resultados" data-hide="descripcion-sitio" data-show="contenedor-resultados"&gt;Robótica&lt;/a&gt;</li>
+
+                    <a data-buscar="robotica" data-source="Videos" data-append="busqueda-resultados" data-hide="descripcion-sitio" data-show="contenedor-resultados">Robótica</a>
+                
+                    <h5 style="color: red">
+                        BUSCAR MEDIANTE TEXTO    
+                    </h5>
+                    
+                    Este elemento buscará recursos relacionados con el valor del campo de texto de ID "texto-busqueda" y reemplazara el html del elemento de ID "busqueda-resultados" con los resultados
+
+                    &lt;button&gt; data-buscar-id="texto-busqueda" data-html="busqueda-resultados" type="submit" class="btn btn-success">Buscar&lt;/button&gt;
+
+                    <button data-buscar-id="texto-busqueda" data-html="busqueda-resultados"  data-hide="descripcion-sitio" data-show="contenedor-resultados" type="submit" class="btn btn-success">Buscar</button>
+
+                </p>
 
             </div>
             <div id="contenedor-resultados" style="display: none;">
@@ -60,50 +101,6 @@
         </div>
 
         <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-3">
-                    <h3>Economía</h3>                    
-                    <ul>
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Oferta_y_demanda">Oferta y Demanda</a>
-                        </li>
-
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Estructura_de_mercado">Estructura de Mercado</a>
-                        </li>
-
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Bien_econ%C3%B3mico">Bienes y Servicios</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h3>Macroeconomía</h3>                    
-                   <ul>
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Inflaci%C3%B3n">Inflación</a>
-                        </li>
-
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Producto_interno_bruto">PBI</a>
-                        </li>
-
-                        <li>
-                            <a target="blank" href="http://es.wikipedia.org/wiki/Sector_p%C3%BAblico">Sector Público</a>
-                        </li>
-                    </ul> 
-                </div>
-                <div class="col-md-3">
-                    <h3>Finanzas</h3>
-                    <p>Próximamente</p>
-                </div>
-                <div class="col-md-3">
-                    <h3>Contabilidad</h3>
-                    <p>Próximamente</p>
-                </div>
-                
-            </div>
 
             <script id="template" type="x-tmpl-mustache">
                 <div class="list-group">
@@ -121,20 +118,10 @@
                     {{/data}}
                 </div>
             </script>
-            
-            <!--
-            <ul>
-                    {{#data}}
-                        <li><a target="blank" href="http://www.educ.ar/recursos/ver?rec_id={{id}}">{{{titulo}}}</a></li>
-                    {{/data}}
-                    </ul>
-            -->
                 
             <hr>
 
-            <footer>
-                <p>Hackaton Chaco 2014</p>
-            </footer>
+            <footer></footer>
         </div>
         
     <!-- Bootstrap core JavaScript

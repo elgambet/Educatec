@@ -31,35 +31,71 @@ $(document).ready(
             };
         }
  
-        var buscar = function(texto, place, segmento){
+        var buscar = function(texto, place, source, segmento){
+            var methods = source == false ? [] : source;
+            var methods_length = methods.length;
             for(var tipo in API_METHODS.recursos){
-                var titulo = tipo;
-                console.log('Buscando (' + tipo + ')');
-                $.getJSON(API_METHODS.recursos[tipo] + KEY + '&texto=' + texto, createCallback(titulo, segmento, place));    
+                if (methods_length == 0 || $.inArray(tipo, methods) !== -1 ){
+                    var titulo = tipo;
+                    console.log('Buscando (' + tipo + ')');
+                    $.getJSON(API_METHODS.recursos[tipo] + KEY + '&texto=' + texto, createCallback(titulo, segmento, place));    
+                }
+                
             }            
         };
         
-        $('#buscar').on('click', function() {            
-            $('#descripcion-sitio').hide();
-            $('#contenedor-resultados').show();
-            var texto_busqueda = $('#texto-busqueda').val();
-            $('#busqueda-resultados').empty();
-            buscar(texto_busqueda, 'busqueda-resultados', false);
+        var hide = function(element){
+            var element_hide = $('#' + element.attr('data-hide'));
+            if(typeof element_hide !== 'undefined'){
+                element_hide.hide();
+            }
+        }
+
+        var show = function(element){
+            var element_show = $('#' + element.attr('data-show'));
+            if(typeof element_show !== 'undefined'){
+                element_show.show();
+            }
+        }
+
+        var getRenderElement = function(element){
+            var append = element.attr('data-append');
+            if(typeof append !== 'undefined'){
+                return append;
+            } else {
+                var html = element.attr('data-html');
+                if(typeof html !== 'undefined'){
+                    $("#" + html).empty();
+                    return html;
+                } 
+            }
+
+            return false;
+        }
+
+        var getDataSource = function(element){
+            var source = element.attr('data-source');
+            if(typeof source !== 'undefined'){
+                return source.split(",");
+            }
+
+            return false;
+        }
+
+        $('[data-buscar-id]').on('click', function() {
+            buscar($('#' + $(this).attr('data-buscar-id')).val(), getRenderElement($(this)), getDataSource($(this)), false);                    
         });
         
-        $('#menu-busquedas a').on('click', function() {
-            var id = $(this).attr('id');
-            if(id == 'principal'){
-                $('#descripcion-sitio').show();
-                $('#contenedor-resultados').hide();
-                $('#busqueda-resultados').empty();
-            } else {
-                $('#descripcion-sitio').hide();
-                $('#contenedor-resultados').show();
-                var texto_busqueda = id.split("-");
-                $('#busqueda-resultados').empty();
-                buscar(texto_busqueda[1], 'busqueda-resultados', false);
-            }
+        $('[data-buscar]').on('click', function() {
+            buscar($(this).attr('data-buscar'), getRenderElement($(this)), getDataSource($(this)), false);
+        });
+
+        $('[data-hide]').on('click', function() {
+            hide($(this));
+        }); 
+
+        $('[data-show]').on('click', function() {
+            show($(this));
         });        
     }   
 );
